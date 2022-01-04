@@ -16,7 +16,7 @@ for (int i=1;i<p.length;i++){
 }
 p[3]=p0;
 
-boolean shtylla=p[0]+p[1];
+/*int shtylla=p[0]+p[1];
 int rreshti=2*p[2]+p[3];
 int numri=sbox[shtylla][rreshti];
 System.out.println(numri);
@@ -41,6 +41,6 @@ boolean[]key=new boolean[4];
 for(int l=0;l<key.length;l++){
    key[l]=g[l]^r1[l];
    System.out.print(key[l]);
-}
+}*/
 
 }}
