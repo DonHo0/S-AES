@@ -3,14 +3,14 @@ public class sbox{
 
 public static void main (String[]args)
 {
-int [][]sbox={{6,11,0,4},{7,14,2,15},{9,8,10,12},{3,1,5,13}};
-boolean[] r1={false,false,false,true};
-boolean[] r2={false,false,true,false};
-boolean[] r3={false,true,false,false};
+//int [][]sbox={{6,11,0,4},{7,14,2,15},{9,8,10,12},{3,1,5,13}};
+//boolean[] r1={false,false,false,true};
+//boolean[] r2={false,false,true,false};
+//boolean[] r3={false,true,false,false};
 boolean []p={false,false,true,true};
 boolean p0=p[0];
-boolean []g=new boolean[4];
-int[]b=new int[4];
+//boolean []g=new boolean[4];
+//int[]b=new int[4];
 for (int i=1;i<p.length;i++){
      p[i-1]=p[i];
 }
