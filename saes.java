@@ -1,5 +1,3 @@
-import javax.swing.JOptionPane;
-
 public class saes {
     public static void main(String[] args) {
     //boolean p[][]={{true,true,false,false,true,true,true,true},{false,false,false,false,true,true,true,true}};
@@ -10,7 +8,7 @@ public class saes {
     boolean [][]key={{true,true,false,false,true,true,true,true},{true,false,true,false,false,false,false,true}};
     boolean[][]xor=new boolean[2][8];
     int [][]xor1=new int[2][8];
-    boolean []tst={true,true,false,false};
+    //boolean []tst={true,true,false,false};
     for(int i=0;i<8;i++){
         xor[0][i]=test[0][i]^key[0][i];
         xor[1][i]=test[1][i]^key[1][i];
@@ -26,7 +24,7 @@ public class saes {
     //ShiftRows(p);
     //boolean []tst={false,true,true,false};
     //g(tst);
-    key3(key2(key1(key)));
+    //key3(key2(key1(key)));
     }
 public static boolean [][] ShiftRows (boolean [][]p){
     boolean p8=p[1][0];
@@ -40,12 +38,8 @@ public static boolean [][] ShiftRows (boolean [][]p){
     p[1][5]=p9;
     p[1][6]=p10;
     p[1][7]=p11;
-    for(int g=0;g<2;g++){
         for(int j=0;j<8;j++){
-            System.out.print(p[g][j]+" ");
-        } 
-    }
-    
+        System.out.println(" rreshti [0] "+j+" "+ p[0][j]+" rreshti [1] "+ j +" "+ p[1][j]+" ");}
     return p;
 }
 public static boolean [][] MixColumms(boolean [][]p){
@@ -289,4 +283,13 @@ public static boolean [][]Sbox(boolean p[][]){
         }
     boolean [][] finalp={{p11[0],p11[1],p11[2],p11[3],p12[0],p12[1],p12[2],p12[3]},{p13[0],p13[1],p13[2],p13[3],p14[0],p14[1],p14[2],p14[3]}};   
     return finalp;}
+
+public static boolean [][] AddRoundKey(boolean[][]p, boolean [][]key){
+    boolean [][] xor= new boolean [2][8];
+    for(int i=0;i<8;i++){
+        xor[0][i]=p[0][i]^key[0][i];
+        xor[1][i]=p[1][i]^key[1][i];
+        //System.out.println(xor1[0][i]+" xor1 "+" xor2 "+ xor1[1][i]+" ");
+    }
+    return xor;}
 }
