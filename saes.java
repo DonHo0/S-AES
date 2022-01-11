@@ -9,6 +9,8 @@ public class saes {
     boolean[][]xor=new boolean[2][8];
     int [][]xor1=new int[2][8];
     //boolean []tst={true,true,false,false};
+    //boolean[][]test1={{false,false,true,false,false,false,false,true},{true,true,true,false,false,true,true,true}};
+    enkriptimi(test, key);
     for(int i=0;i<8;i++){
         xor[0][i]=test[0][i]^key[0][i];
         xor[1][i]=test[1][i]^key[1][i];
@@ -25,6 +27,7 @@ public class saes {
     //boolean []tst={false,true,true,false};
     //g(tst);
     //key3(key2(key1(key)));
+    //MixColumms(test1);
     }
 public static boolean [][] ShiftRows (boolean [][]p){
     boolean p8=p[1][0];
@@ -38,22 +41,124 @@ public static boolean [][] ShiftRows (boolean [][]p){
     p[1][5]=p9;
     p[1][6]=p10;
     p[1][7]=p11;
-        for(int j=0;j<8;j++){
-        System.out.println(" rreshti [0] "+j+" "+ p[0][j]+" rreshti [1] "+ j +" "+ p[1][j]+" ");}
+        //for(int j=0;j<8;j++){
+        //System.out.println(" rreshti [0] "+j+" "+ p[0][j]+" rreshti [1] "+ j +" "+ p[1][j]+" ");}
     return p;
 }
 public static boolean [][] MixColumms(boolean [][]p){
-    //boolean mds [][]={{false,false,false,true,false,false,false,true},{false,false,false,true,false,false,true,false}};
-    p=ShiftRows(p);
-    for(int i=0;i<4;i++){
-        p[0][i]=(p[0][i]);
+    boolean[] p0={p[0][0],p[0][1],p[0][2],p[0][3]};
+    boolean[] p1={p[0][4],p[0][5],p[0][6],p[0][7]};
+    boolean[] p2={p[1][0],p[1][1],p[1][2],p[1][3]};
+    boolean[] p3={p[1][4],p[1][5],p[1][6],p[1][7]};
+    int mds[][] ={{1,1},{1,2}};
+    int b1[]=new int[4];
+    int b2[]=new int[4];
+    int b3[]=new int[4];
+    int b4[]=new int[4];
+    for(int j=0;j<p0.length;j++){
+            if(p0[j]){
+                b1[j]=1;}}
+    for(int j=0;j<p0.length;j++){
+            if(p1[j]){
+                b2[j]=1;}}
+    for(int j=0;j<p0.length;j++){
+            if(p2[j]){
+                b3[j]=1;}}
+    for(int j=0;j<p0.length;j++){
+            if(p3[j]){
+                b4[j]=1;}}
+    int x1=0;
+    int x2=0;
+    int x3=0;
+    int x4=0;
+    double b11[]={b1[3],b1[2],b1[1],b1[0]};
+    for(int l=0;l<4;l++){
+        x1=(int)(x1+(b11[l]*Math.pow(2,l)));
     }
-    for(int g=0;g<2;g++){
-        for(int j=0;j<8;j++){
-            System.out.print(p[g][j]+" ");
-                }
-            }
-    return p;
+    double b22[]={b2[3],b2[2],b2[1],b2[0]};
+    for(int l=0;l<4;l++){
+        x2=(int)(x2+(b22[l]*Math.pow(2,l)));}
+    double b33[]={b3[3],b3[2],b3[1],b3[0]};
+    for(int l=0;l<4;l++){
+        x3=(int)(x3+(b33[l]*Math.pow(2,l)));}
+    double b44[]={b4[3],b4[2],b4[1],b4[0]};
+    for(int l=0;l<4;l++){
+        x4=(int)(x4+(b44[l]*Math.pow(2,l)));}
+    int y1=x1*mds[0][0];
+    int y2=x2*mds[0][0];
+    int y3=x3*mds[0][1];
+    int y4=x4*mds[0][1];
+    int y5=x1*mds[1][0];
+    int y6=x2*mds[1][0];
+    int y7=x3*mds[1][1];
+    int y8=x4*mds[1][1];
+    int z1=y1^y3;
+    int z2=y2^y4;
+    int z3=y5^y7;
+    int z4=y6^y8;
+    System.out.println(z1+" "+z2+" "+z3+" "+z4);
+    if(z1>=16){
+        z1=z1^19;
+    }
+    if(z2>=16){
+        z2=z2^19;
+    }
+    if(z3>=16){
+        z3=z3^19;
+    }
+    if(z4>=16){
+        z4=z4^19;
+    }
+    System.out.println(z1+" "+z2+" "+z3+" "+z4);
+    
+    int []finalp1=new int[4];
+    boolean finalp11[]=new boolean[4];
+    for(int j=3;j>=0;j--){
+               finalp1[j]=z1%2;
+               z1=z1/2;}
+
+    for(int f=0;f<4;f++){
+          if(finalp1[f]==1){
+            finalp11[f]=true;}        
+          }
+
+    int []finalp2=new int[4];
+    boolean finalp22[]=new boolean[4];
+    for(int j=3;j>=0;j--){
+            finalp2[j]=z2%2;
+            z2=z2/2;}
+
+    for(int f=0;f<4;f++){
+       if(finalp2[f]==1){
+         finalp22[f]=true;}        
+        }
+
+    int []finalp3=new int[4];
+    boolean finalp33[]=new boolean[4];
+    for(int j=3;j>=0;j--){
+            finalp3[j]=z3%2;
+            z3=z3/2;}
+
+    for(int f=0;f<4;f++){
+        if(finalp3[f]==1){
+        finalp33[f]=true;}        
+        }
+
+    int []finalp4=new int[4];
+    boolean finalp44[]=new boolean[4];
+    for(int j=3;j>=0;j--){
+        finalp4[j]=z4%2;
+        z4=z4/2;}
+
+    for(int f=0;f<4;f++){
+        if(finalp4[f]==1){
+        finalp44[f]=true;}        
+    }
+    boolean finalp[][]={{finalp11[0],finalp11[1],finalp11[2],finalp11[3],finalp22[0],finalp22[1],finalp22[2],finalp22[3]},{finalp33[0],finalp33[1],finalp33[2],finalp33[3],finalp44[0],finalp44[1],finalp44[2],finalp44[3]}};
+    //for(int i=0;i<8;i++){
+    //System.out.println(" rreshti [0] "+i+" "+ finalp[0][i]+" rreshti [1] "+ i +" "+ finalp[1][i]+" ");}  
+    
+    return finalp;
     }
 public static boolean []g(boolean k[]){
     boolean k0=k[0];
@@ -181,9 +286,8 @@ public static boolean [][]key3(boolean k[][]){
     for(int j=0;j<4;j++){
             k15[j]=k11[j]^k14[j];}
     boolean finalK3[][]={{k12[0],k12[1],k12[2],k12[3],k14[0],k14[1],k14[2],k14[3]},{k13[0],k13[1],k13[2],k13[3],k15[0],k15[1],k15[2],k15[3]}};
-    for(int i=0;i<8;i++){
-        System.out.println(" rreshti [0] "+i+" "+ finalK3[0][i]+" rreshti [1] "+ i +" "+ finalK3[1][i]+" ");
-    } 
+    //for(int i=0;i<8;i++){
+    //    System.out.println(" rreshti [0] "+i+" "+ finalK3[0][i]+" rreshti [1] "+ i +" "+ finalK3[1][i]+" ");} 
     return finalK3;
 }
                
@@ -292,4 +396,25 @@ public static boolean [][] AddRoundKey(boolean[][]p, boolean [][]key){
         //System.out.println(xor1[0][i]+" xor1 "+" xor2 "+ xor1[1][i]+" ");
     }
     return xor;}
+public static boolean [][] enkriptimi(boolean[][]p,boolean[][]key){
+    
+    for(int i=0;i<8;i++){
+        p[0][i]=p[0][i]^key[0][i];
+        p[1][i]=p[1][i]^key[1][i];}
+    for(int i=0;i<3;i++){
+        if(i==0){
+           p=AddRoundKey(MixColumms(ShiftRows((Sbox(p)))),key1(key));
+        }
+        if(i==1){
+            p=AddRoundKey(MixColumms(ShiftRows((Sbox(p)))),key2(key1(key)));
+        }
+        if(i==2){
+             p=AddRoundKey(ShiftRows((Sbox(p))),key3(key2(key1(key))));
+        }
+    }
+    for(int i=0;i<8;i++){
+    System.out.println(" rreshti [0] "+i+" "+ p[0][i]+" rreshti [1] "+ i +" "+ p[1][i]+" ");}
+    return p;
+}
+
 }
